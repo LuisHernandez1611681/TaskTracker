@@ -15,12 +15,24 @@ class FileService {
         }
     }
 
+    // Leemos los valores que estan en el archivo
+    async readFile() {
+        try {
+            const data = await fs.readFile(this.fileName, 'utf8');
+            return JSON.parse(data);
+        } catch(error) {
+            console.error('readFileError: ', error);
+            return [];
+        } 
+    }
+
+    // Escribimos en el archivo
     async writeFile(content) {
         try {
             await fs.writeFile(this.fileName, JSON.stringify(content));
             console.log('Se modificó el archivo');
         } catch(error) {
-            console.log('writeFileError: ', error);
+            console.error('writeFileError: ', error);
         }
     }
 }

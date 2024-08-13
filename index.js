@@ -1,14 +1,19 @@
-const FileService = require("./class/fileservice");
+const FileService = require("./class/fileService");
 const { askQuestion, readlineClouse } = require('./utils/questionUtils');
+const DataService = require('./class/dataService');
 
 
 const main = async () => {
 	try {
 		// Crear y leer el archivo
 		const fileService = new FileService('./db/list-task.json', []);
+		const dataService = new DataService(fileService);
 
 		// Crear el archivo si no existe
 		await fileService.createFile()
+
+		// Cargar los datos del archivo
+		await dataService.loadContent();
 
 		let exit = false;
 
