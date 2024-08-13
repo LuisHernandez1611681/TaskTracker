@@ -45,6 +45,13 @@ class DataService {
 		}
 	}
 
+	// Eliminamos la tarea
+	deleteTask(id) {
+		if(this.searchTask(id)) {
+			this.contentFile = this.contentFile.filter(task => task.id != id);
+		}
+	}
+
 	// Ejecutamos la funcion que guarda los cambios en el archivo
 	async saveChanges() {
 		await this.fileService.writeFile(this.contentFile);

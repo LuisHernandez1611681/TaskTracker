@@ -32,11 +32,18 @@ const handleEditTask = async (dataService) => {
 		value
 	);
 	await dataService.saveChanges();
-
-
 }
+
+// Eliminar una tarea
+const handleDeleteTask = async (dataService) => {
+	const id = await askQuestion('ID de la tarea a eliminar: ');
+	dataService.deleteTask(id);
+	await dataService.saveChanges();
+}
+
 
 module.exports = {
 	handleAddTask,
-	handleEditTask
+	handleEditTask,
+	handleDeleteTask
 }
