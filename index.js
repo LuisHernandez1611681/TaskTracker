@@ -1,7 +1,7 @@
 const FileService = require("./class/fileService");
 const { askQuestion, readlineClouse } = require('./utils/questionUtils');
 const DataService = require('./class/dataService');
-const { handleAddTask, handleEditTask, handleDeleteTask } = require("./functions/taskFunctions");
+const { handleAddTask, handleEditTask, handleDeleteTask, handleViewTasks } = require("./functions/taskFunctions");
 
 
 const main = async () => {
@@ -20,7 +20,7 @@ const main = async () => {
 
 		while(!exit) {
 			console.log('***************************************');
-			const operation = await askQuestion(`Selecciona una opción:\n0.-Salir\n1.-Agregar tarea\n2.-Editar tarea\n3.-Eliminar tarea\n`);
+			const operation = await askQuestion(`Selecciona una opción:\n0.-Salir\n1.-Agregar tarea\n2.-Editar tarea\n3.-Eliminar tarea\n4.-Ver tareas\n`);
 
 			switch(operation){
 				case '0':
@@ -34,6 +34,9 @@ const main = async () => {
 					break;
 				case '3':
 					await handleDeleteTask(dataService);
+					break;
+				case '4':
+					await handleViewTasks(dataService);
 					break;
 				default:
 					console.log('Operación no válida');

@@ -52,6 +52,10 @@ class DataService {
 		}
 	}
 
+	getTasksByStatus(status) {
+		return this.contentFile.filter(task => task.status === status);
+	}
+
 	// Ejecutamos la funcion que guarda los cambios en el archivo
 	async saveChanges() {
 		await this.fileService.writeFile(this.contentFile);

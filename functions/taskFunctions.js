@@ -41,9 +41,20 @@ const handleDeleteTask = async (dataService) => {
 	await dataService.saveChanges();
 }
 
+// Mostrar el listado de tareas
+const handleViewTasks = async (dataService) => {
+	const statusOption = await askQuestion('Selecciona el estado:\nA.-TODO\nB.-IN-PROGRESS\nC.-DONE\n');
+	const tasks = dataService.getTasksByStatus(statusTask[statusOption].value);
+	console.log(`************************************** ${statusTask[statusOption].value}`);
+	tasks.forEach(task => {
+		console.log(`id: ${task.id} - descripción: ${task.description}`);
+	});
+}
+
 
 module.exports = {
 	handleAddTask,
 	handleEditTask,
-	handleDeleteTask
+	handleDeleteTask,
+	handleViewTasks
 }
