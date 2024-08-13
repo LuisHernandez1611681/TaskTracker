@@ -1,6 +1,7 @@
 const FileService = require("./class/fileService");
 const { askQuestion, readlineClouse } = require('./utils/questionUtils');
 const DataService = require('./class/dataService');
+const { handleAddTask } = require("./functions/taskFunctions");
 
 
 const main = async () => {
@@ -26,7 +27,7 @@ const main = async () => {
 					exit = true;
 					break;
 				case '1': 
-					console.log("Agrega un nuevo valor");
+					await handleAddTask(dataService);
 					break;
 				default:
 					console.log('Operación no válida');
